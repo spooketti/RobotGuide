@@ -2,23 +2,23 @@ package frc.robot.subsystems.Shooter;
 
 public interface ShooterIO {
 
-    public static class shooterData
+    public static class ShooterData
     {
-        public double bottomVolts = 0;
+        public double bottomGoalVolts = 0;
         public double bottomTemperatureCelsius = 0;
         public double bottomVelocityRadPerSec = 0;
         
-        public double topVolts = 0;
+        public double topGoalVolts = 0;
         public double topTemperatureCelsius = 0;
         public double topVelocityRadPerSec = 0;
     }
 
-    public default void updateData(shooterData data)
+    public default void updateData(ShooterData data)
     {
 
     }
 
-    public default void setVoltage(double volts)
+    public default void setVoltage(double bottomVolt, double topVolt)
     {
 
     }

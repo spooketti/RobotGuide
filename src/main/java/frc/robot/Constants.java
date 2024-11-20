@@ -17,5 +17,9 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
 
-  public static final boolean isSim = Robot.isSimulation();
+  public static class SimConstants
+  {
+    public static final boolean isSim = Robot.isSimulation();
+    public static final double simLoopPeriodic = 0.02;
+  }
 }
