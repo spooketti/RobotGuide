@@ -2,23 +2,23 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.Shooter;
+package frc.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.Shooter.ShooterIO.ShooterData;
+import frc.robot.subsystems.Intake.IntakeIO.IntakeData;
 
-public class Shooter extends SubsystemBase {
+public class Intake extends SubsystemBase {
 
-    public ShooterData shooterData = new ShooterData();
+    public IntakeData intakeData = new IntakeData();
     public double goalVelocityRadPerSec = 0;
 
-    private ShooterIO shooterIO;
-    public Shooter() {
-        shooterIO = new ShooterReal();
+    private IntakeIO intakeIO;
+    public Intake() {
+        intakeIO = new IntakeReal();
         if (Constants.SimConstants.isSim) {
-            shooterIO = new ShooterReal();
+            intakeIO = new IntakeSim();
         }
     }
 
@@ -26,7 +26,7 @@ public class Shooter extends SubsystemBase {
     {
 
         goalVelocityRadPerSec = 0;
-        shooterIO.setVoltage(0, 0);
+        intakeIO.setVoltage(0);
     }
 
     public void setGoalVelocity(double goalVelocity)
@@ -36,14 +36,13 @@ public class Shooter extends SubsystemBase {
 
     private void setVelocity()
     {
-       shooterIO.setVoltage(ShooterConfig.shooterPID.calculate(shooterData.bottomVelocityRadPerSec,goalVelocityRadPerSec),
-       ShooterConfig.shooterPID.calculate(shooterData.topVelocityRadPerSec,goalVelocityRadPerSec));
+       intakeIO.setVoltage(IntakeConfig.intakePID.calculate(intakeData.intakeVelocityRadPerSec,goalVelocityRadPerSec));
     }
 
     @Override
     public void periodic() {
-        shooterIO.updateData(shooterData);
+        intakeIO.updateData(intakeData);
         setVelocity();
-        SmartDashboard.putNumber("ShooterVelocity", shooterData.topVelocityRadPerSec);
+        SmartDashboard.putNumber("IntakeVelocity", intakeData.intakeVelocityRadPerSec);
     }
 }

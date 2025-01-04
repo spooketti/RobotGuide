@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.util.Units;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -21,5 +25,17 @@ public final class Constants {
   {
     public static final boolean isSim = Robot.isSimulation();
     public static final double simLoopPeriodic = 0.02;
+  }
+
+  public static class Swerve
+  {
+    public static final double horizontalBaseM = Units.inchesToMeters(17.5);
+    public static final double verticalBaseM = Units.inchesToMeters(17.5);
+    public static final SwerveDriveKinematics driveKinematics = new SwerveDriveKinematics(
+      new Translation2d(horizontalBaseM / 2, verticalBaseM /2), //front left
+      new Translation2d(horizontalBaseM / 2, -verticalBaseM /2), //front right
+      new Translation2d(-horizontalBaseM/2, verticalBaseM/2), //back left
+      new Translation2d(-horizontalBaseM/2, -verticalBaseM/2) //back right
+    );//where the modules are relative to the center of the robot
   }
 }

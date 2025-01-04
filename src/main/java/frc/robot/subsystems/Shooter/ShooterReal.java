@@ -4,8 +4,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class ShooterReal implements ShooterIO {
-    private CANSparkMax bottomMotor = new CANSparkMax(0,MotorType.kBrushless);
-  private CANSparkMax topMotor = new CANSparkMax(0,MotorType.kBrushless);
+  private CANSparkMax bottomMotor = new CANSparkMax(0,MotorType.kBrushless);
+  private CANSparkMax topMotor = new CANSparkMax(1,MotorType.kBrushless);
   private double bottomGoalVolts = 0;
   private double topGoalVolts = 0;
   

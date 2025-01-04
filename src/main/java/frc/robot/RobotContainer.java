@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.SwerveCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
@@ -33,6 +34,7 @@ public class RobotContainer {
     m_driverController.rightTrigger().whileTrue(Commands.run(() -> Robot.shooter.setGoalVelocity(25)));
     m_driverController.rightTrigger().whileFalse(Commands.run(() -> Robot.shooter.setGoalVelocity(0)));
 
+    Robot.swerve.setDefaultCommand(new SwerveCommand(m_driverController.getLeftX(),m_driverController.getLeftY(),m_driverController.getRightX()));
   }
 
  
